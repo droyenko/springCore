@@ -22,7 +22,7 @@ public class FileEventLogger implements EventLogger {
         }
     }
 
-    public void init() {
-        this.file = new File(fileName);
-    }
+//    public void init() {
+//        this.file = new File(fileName);
+//    }
 }

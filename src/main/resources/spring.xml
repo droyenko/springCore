@@ -21,5 +21,11 @@
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
+    <bean id="event" class="com.yet.spring.core.beans.Event">
+        <constructor-arg index="0">
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg index="1" ref="dateFormat"/>
+    </bean>
 
 </beans>

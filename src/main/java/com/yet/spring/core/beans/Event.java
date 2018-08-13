@@ -23,6 +23,10 @@ public class Event {
         this.msg = msg;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -34,10 +38,6 @@ public class Event {
 
     public int getId() {
         return id;
-    }
-
-    public String getMsg() {
-        return msg;
     }
 
     public Date getDate() {
