@@ -12,20 +12,25 @@
 
     <bean id="app" class="com.yet.spring.core.App">
         <constructor-arg index="0" ref="client"/>
-        <constructor-arg index="1" ref="eventLogger"/>
+        <constructor-arg index="1" ref="cacheFileEventLogger"/>
     </bean>
 
-    <bean id="fileEventLogger" class="com.yet.spring.core.loggers.FileEventLogger">
-        <constructor-arg value="outputText.txt"/>
+    <bean id="fileEventLogger" class="com.yet.spring.core.loggers.FileEventLogger" init-method="init">
+        <constructor-arg value="target/event_log.txt"/>
     </bean>
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
-    <bean id="event" class="com.yet.spring.core.beans.Event">
+    <bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
         <constructor-arg index="0">
             <bean class="java.util.Date"/>
         </constructor-arg>
         <constructor-arg index="1" ref="dateFormat"/>
+    </bean>
+    
+    <bean id="cacheFileEventLogger" class="com.yet.spring.core.loggers.CacheFileEventLogger" destroy-method="destroy">
+        <constructor-arg index="0" value="target/event_log.txt"/>
+        <constructor-arg index="1" value="5"/>
     </bean>
 
 </beans>
