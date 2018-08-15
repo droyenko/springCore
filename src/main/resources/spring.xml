@@ -3,20 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <import resource="loggers.xml"/>
+
     <bean id="client" class="com.yet.spring.core.beans.Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="John Garcia"/>
+        <property name="greeting" value="Hello there!"/>
     </bean>
-
-    <bean id="eventLogger" class="com.yet.spring.core.loggers.ConsoleEventLogger"/>
 
     <bean id="app" class="com.yet.spring.core.App">
         <constructor-arg index="0" ref="client"/>
         <constructor-arg index="1" ref="cacheFileEventLogger"/>
-    </bean>
-
-    <bean id="fileEventLogger" class="com.yet.spring.core.loggers.FileEventLogger" init-method="init">
-        <constructor-arg value="target/event_log.txt"/>
+        <constructor-arg index="2">
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
@@ -27,10 +30,14 @@
         </constructor-arg>
         <constructor-arg index="1" ref="dateFormat"/>
     </bean>
-    
-    <bean id="cacheFileEventLogger" class="com.yet.spring.core.loggers.CacheFileEventLogger" destroy-method="destroy">
-        <constructor-arg index="0" value="target/event_log.txt"/>
-        <constructor-arg index="1" value="5"/>
-    </bean>
 
+    <bean id="combinedEventLogger" class="com.yet.spring.core.loggers.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    
 </beans>

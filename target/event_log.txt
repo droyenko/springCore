@@ -1,1 +1,7 @@
-Event{id=1, msg='Some event for user John Garcgit ia', date=Aug 15, 2018 12:00:52 AM}
+Event{id=6, msg='Some event for user John Garcia', date=Aug 15, 2018 1:36:47 PM}
+Event{id=7, msg='Some event for user John Garcia', date=Aug 15, 2018 1:36:53 PM}
+Event{id=1, msg='Some event for user John Garcia', date=Aug 15, 2018 1:37:00 PM}
+Event{id=7, msg='Some event for user John Garcia', date=Aug 15, 2018 1:38:08 PM}
+Event{id=9, msg='Some event for user John Garcia', date=Aug 15, 2018 1:47:00 PM}
+Event{id=2, msg='Some event for user 2', date=Aug 15, 2018 3:12:10 PM}
+Event{id=7, msg='Some event for user 3', date=Aug 15, 2018 3:12:10 PM}

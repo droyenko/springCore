@@ -1,7 +1,5 @@
 package com.yet.spring.core.beans;
 
-import javafx.scene.input.DataFormat;
-
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -23,24 +21,13 @@ public class Event {
         this.msg = msg;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
                 ", msg='" + msg + '\'' +
                 ", date=" + df.format(date) +
-                '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Date getDate() {
-        return date;
+                '}' +
+                '\n';
     }
 }
