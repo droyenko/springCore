@@ -1,6 +1,7 @@
 package com.yet.spring.core.beans;
 
 import java.text.DateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Random;
 
@@ -19,6 +20,11 @@ public class Event {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public static boolean isDay() {
+        int hour = LocalTime.now().getHour();
+        return hour >= 8 && hour < 17;
     }
 
     @Override

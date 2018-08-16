@@ -5,3 +5,12 @@ Event{id=7, msg='Some event for user John Garcia', date=Aug 15, 2018 1:38:08 PM}
 Event{id=9, msg='Some event for user John Garcia', date=Aug 15, 2018 1:47:00 PM}
 Event{id=2, msg='Some event for user 2', date=Aug 15, 2018 3:12:10 PM}
 Event{id=7, msg='Some event for user 3', date=Aug 15, 2018 3:12:10 PM}
+Event{id=2, msg='Some event for user 2', date=Aug 16, 2018 1:33:33 PM}
+Event{id=6, msg='Some event for user 3', date=Aug 16, 2018 1:33:33 PM}
+Event{id=10, msg='Some event for user 2', date=Aug 16, 2018 3:36:24 PM}
+Event{id=8, msg='Some event for user 3', date=Aug 16, 2018 3:36:24 PM}
+Event{id=1, msg='Some event for user 2', date=Aug 16, 2018 4:18:45 PM}
+Event{id=7, msg='Some event for user 3', date=Aug 16, 2018 4:18:45 PM}
+Event{id=10, msg='Some event for user 2', date=Aug 16, 2018 4:58:05 PM}
+Event{id=1, msg='Some event for user 3', date=Aug 16, 2018 4:58:06 PM}
+Event{id=7, msg='Some event for user 2', date=Aug 16, 2018 5:00:19 PM}
