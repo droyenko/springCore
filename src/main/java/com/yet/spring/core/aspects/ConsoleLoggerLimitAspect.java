@@ -3,7 +3,9 @@ package com.yet.spring.core.aspects;
 import com.yet.spring.core.beans.Event;
 import com.yet.spring.core.loggers.EventLogger;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Aspect;
 
+@Aspect
 public class ConsoleLoggerLimitAspect {
     private final int maxCount;
     private final EventLogger otherLogger;

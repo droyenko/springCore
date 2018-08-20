@@ -19,7 +19,8 @@ public class App {
     private StatisticsAspect statisticsAspect;
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml",
+                "loggers.xml", "aspects.xml", "db.xml");
         App app = (App) ctx.getBean("app");
 
         Client client = ctx.getBean(Client.class);
