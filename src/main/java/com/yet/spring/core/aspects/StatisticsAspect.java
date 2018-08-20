@@ -7,11 +7,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @Aspect
 public class StatisticsAspect {
-    private Map<Class<?>, Integer> counter;
+
+    private Map<Class<?>, Integer> counter = new HashMap<>();
 
     @Pointcut("execution(* *.logEvent(..))")
     private void allLogEventMethods() {}
@@ -25,8 +28,8 @@ public class StatisticsAspect {
         counter.put(clazz, counter.get(clazz)+1);
     }
 
-    @Around("consoleLoggerMethods()")
-    public void aroundLogEvent(ProceedingJoinPoint jp) {
-
+    public Map<Class<?>, Integer> getCounter() {
+        return Collections.unmodifiableMap(counter);
     }
+
 }

@@ -6,13 +6,12 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class FileEventLogger implements EventLogger {
-    private String filePath;
+public class FileEventLogger extends AbstractLogger {
+    private String fileName;
     private File file;
 
-    public FileEventLogger(String filePath) {
-        this.filePath = filePath;
-        this.file = new File(filePath);
+    public FileEventLogger(String fileName) {
+        this.fileName = fileName;
     }
     @Override
     public void logEvent(Event event) {
@@ -23,15 +22,12 @@ public class FileEventLogger implements EventLogger {
         }
     }
 
-    public void init() {
+    public void init() throws IOException {
+        file = new File(fileName);
         if (file.exists() && !file.canWrite()){
-            throw new IllegalArgumentException("Can't write to file" + filePath);
-        } else if (!file.exists()){
-            try {
+            throw new IllegalArgumentException("Can't write to file" + fileName);
+        } else if (!file.exists()) {
                 file.createNewFile();
-            } catch (IOException e) {
-                throw new IllegalArgumentException("Can't create file", e);
-            }
         }
     }
 }

@@ -3,20 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/util
             http://www.springframework.org/schema/util/spring-util.xsd
-            http://www.springframework.org/schema/aop
-            http://www.springframework.org/schema/aop/spring-aop.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
         <context:annotation-config/>
 
     <import resource="loggers.xml"/>
 
-    <aop:aspectj-autoproxy/>
+    <import resource="aspects.xml"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -27,8 +24,6 @@
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
     </bean>
-
-    <bean class="com.yet.spring.core.aspects.LoggingAspect"/>
 
     <bean id="client" class="com.yet.spring.core.beans.Client">
         <constructor-arg index="0" value="${id}"/>
@@ -45,6 +40,11 @@
         <constructor-arg ref="client"/>
         <constructor-arg value="#{ T(com.yet.spring.core.beans.Event).isDay() ? fileEventLogger : consoleEventLogger}"/>
         <constructor-arg ref="loggerMap"/>
+
+        <property name="startupMessage" value="#{'Hello user ' + (systemProperties['os.name'].contains('Windows') ?
+        systemEnvironment['USERNAME'] : systemEnvironment['USER']) + '. Default logger is ' + app.defaultLogger.name }"/>
+
+        <property name="statisticsAspect" ref="statisticsAspect"/>
     </bean>
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
@@ -56,13 +56,4 @@
         <constructor-arg index="1" ref="dateFormat"/>
     </bean>
 
-    <bean id="combinedEventLogger" class="com.yet.spring.core.loggers.CombinedEventLogger">
-        <constructor-arg>
-            <list>
-                <ref bean="consoleEventLogger"/>
-                <ref bean="fileEventLogger"/>
-            </list>
-        </constructor-arg>
-    </bean>
-    
 </beans>

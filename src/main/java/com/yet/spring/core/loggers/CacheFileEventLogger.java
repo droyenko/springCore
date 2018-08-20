@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CacheFileEventLogger extends FileEventLogger {
-    private Integer cacheSize;
+    private int cacheSize;
     private List<Event> cache;
 
-    public CacheFileEventLogger(String filePath, Integer cacheSize) {
+    public CacheFileEventLogger(String filePath, int cacheSize) {
         super(filePath);
         this.cacheSize = cacheSize;
         this.cache = new ArrayList<>(cacheSize);
